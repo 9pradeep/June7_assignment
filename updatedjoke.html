@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Joke App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h2>Random Joke Generator</h2>
+    <p id="joke"></p>
+
+    <div id="errorLog"></div> <!-- Error log area -->
+
+    <script>
+        function fetchRandomJoke() {
+            $.ajax({
+                url: "https://official-joke-api.appspot.com/random_joke",
+                type: "GET",
+                dataType: "json",
+                success: function(result){
+                    console.log(result);
+                    $("#joke").html(result.setup + " <br> " + result.punchline);
+                }
+            });
+        }
+
+        $(document).ready(function(){
+            fetchRandomJoke(); // Fetch and display a joke immediately
+            setInterval(fetchRandomJoke, 10000); // Fetch and display a new joke every 10 seconds
+
+            $(document).ajaxError(function(event, xhr, settings, error){
+                var errorMessage = `Error: ${error} - ${xhr.status} ${xhr.statusText}`;
+                console.log(errorMessage);
+                $("#errorLog").append("<p>" + errorMessage + "</p>");
+            });
+        });
+    </script>
+</body>
+</html>

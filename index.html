@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON File Display</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h2>JSON File Display</h2>
+    <div id="jsonData"></div>
+
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url: "https://official-joke-api.appspot.com/random_joke", // Replace with your JSON file URL
+                type: "GET",
+                dataType: "json",
+                success: function(result){
+                    console.log(result);
+                    $("#jsonData").html(JSON.stringify(result));
+                },
+                error: function(error){
+                    console.log(`Error: ${error}`);
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>

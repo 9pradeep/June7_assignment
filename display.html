@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Input Display</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h2>User Input Display</h2>
+    <form id="userInputForm">
+        <input type="text" id="userInput" placeholder="Enter your text">
+        <button type="button" id="displayButton">Display</button>
+    </form>
+    <p id="displayArea"></p>
+
+    <script>
+        $(document).ready(function(){
+            $("#displayButton").click(function(){
+                var userInput = $("#userInput").val();
+                $("#displayArea").text(userInput);
+            });
+        });
+    </script>
+</body>
+</html>
